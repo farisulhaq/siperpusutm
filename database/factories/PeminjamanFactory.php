@@ -20,9 +20,6 @@ class PeminjamanFactory extends Factory
         static $nimAfter2 = 10;
         return [
             'tgl_pinjam' => '2022-11-1',
-            'denda' => 0,
-            'status' => $this->faker->numberBetween(0, 2),
-            'jumlah' => $this->faker->numberBetween(1, 5),
             'id_buku' => $this->faker->numberBetween(1, 30),
             'nim_mahasiswa' => $nim . $nimAfter2++,
         ];

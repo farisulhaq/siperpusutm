@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMahasiswaRequest;
 use App\Http\Requests\UpdateMahasiswaRequest;
+use App\Models\Buku;
 use App\Models\Mahasiswa;
 use App\Models\Peminjaman;
 use DateTime;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -18,8 +20,8 @@ class MahasiswaController extends Controller
     public function index()
     {
         $mahasiswa = auth()->user();
-        dd($mahasiswa);
-        return view('mahasiswa.index', compact('mahasiswa', 'matakuliahs'));
+        $bukus = Buku::all();
+        return view('mahasiswa.index', compact('mahasiswa', 'bukus'));
     }
 
     public function indexAdmin()
@@ -58,21 +60,8 @@ class MahasiswaController extends Controller
      */
     public function show(Mahasiswa $mahasiswa)
     {
-        // Menghitung Denda
-        foreach ($mahasiswa->peminjamans as $peminjaman) {
-            if (!$peminjaman->tgl_kembali) {
-                $str_tgl_peminjaman = $peminjaman->tgl_pinjam;
-                $hari_ini = new DateTime("now");
-                $tgl_pinjam = new DateTime($str_tgl_peminjaman);
-
-                $jumlah_rentang = $hari_ini->diff($tgl_pinjam)->format("%r%a"); //3
-                $jumlah_hari_terlambat = 5 - (int)$jumlah_rentang; # 5 adalah batas waktu pinjam
-                $jumlah_denda = 1000 * $jumlah_hari_terlambat;
-            }
-        }
         return view('auth.admin.mahasiswa.show', compact('mahasiswa',));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,5 +94,28 @@ class MahasiswaController extends Controller
     public function destroy(Mahasiswa $mahasiswa)
     {
         //
+    }
+
+    public function updatePassword()
+    {
+        request()->validate([
+            'oldPassword' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $attr = request()->all();
+
+        $mahasiswa_nim = auth()->user()->nim;
+        $mahasiswa = Mahasiswa::find($mahasiswa_nim);
+
+        if (Hash::check(request()->oldPassword, $mahasiswa->password)) {
+            $attr['password'] = Hash::make(request()->password);
+            $mahasiswa->update($attr);
+            return redirect()->route('mahasiswa.profile')->with('success', 'Password telah diubah');
+        } else {
+            return redirect()->route('mahasiswa.profile')->with('error', 'Password lama salah');
+        }
+
+        return redirect()->route('mahasiswa.profile')->with('success', 'Password telah diubah');
     }
 }

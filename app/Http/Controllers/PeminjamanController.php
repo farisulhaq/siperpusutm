@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePeminjamanRequest;
 use App\Http\Requests\UpdatePeminjamanRequest;
+use App\Models\Mahasiswa;
 use App\Models\Peminjaman;
+use DateTime;
 
 class PeminjamanController extends Controller
 {
@@ -70,7 +72,11 @@ class PeminjamanController extends Controller
      */
     public function update(UpdatePeminjamanRequest $request, Peminjaman $peminjaman)
     {
-        //
+
+        $tgl_kembali = new DateTime("now");
+        $peminjaman->update(array('tgl_kembali' => $tgl_kembali));
+        $mahasiswa = Mahasiswa::where('nim', '=', $peminjaman->nim_mahasiswa)->first();
+        return view('auth.admin.mahasiswa.show', compact('mahasiswa'));
     }
 
     /**

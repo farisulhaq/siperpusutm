@@ -22,7 +22,7 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Lihat Mahasiswa (Peminjam)</h1>
             <!-- DataTales Example -->
-            <div class="container  w-50">
+            <div class="container  w-75">
                 <div class="card p-3">
                     <form>
                         <!-- NAMA -->
@@ -75,17 +75,18 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Judul</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Peminjaman</th>
+                                        <th scope="col">Pengembalian</th>
                                         <th scope="col">Denda</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- LOGIC --}}
+                                    @php
+                                    $total_denda = 0;
+                                    @endphp
+                                    @foreach ($mahasiswa->peminjamans as $peminjaman)
                                     <tr>
-                                        {{-- LOGIC --}}
-                                        @php
-                                        $total_denda = 0;
-                                        @endphp
-                                        @foreach ($mahasiswa->peminjamans as $peminjaman)
                                         {{-- Menghitung Denda dan Status --}}
                                         @php
                                         if (!$peminjaman->tgl_kembali) {
@@ -94,28 +95,27 @@
                                         $tgl_pinjam = new DateTime($str_tgl_peminjaman);
 
                                         $selisih_hari = $hari_ini->diff($tgl_pinjam)->format("%r%a"); //3
-                                        $jumlah_hari_terlambat = 5 - (int)$selisih_hari; # 5 adalah batas waktu pinjam
+                                        $jumlah_hari_terlambat = -5 - (int)$selisih_hari; # 5 adalah batas waktu pinjam
+                                        // DENDA
                                         $denda = 1000 * $jumlah_hari_terlambat; // Denda Tiap Pinnjaman
                                         $total_denda = $total_denda + $denda; // Total Denda
                                         $status = 'Denda';
-                                        if ($denda == 0) {
-                                        $status = 'Dipinjam';
-                                        }
-                                        }
-                                        else {
-                                        $status = 'Dikembalikan';
-                                        $denda = 0;
-                                        }
-                                        @endphp
-
-                                        {{-- TABEL --}}
-                                        <th scope="row">{{ $loop->index+1 }}</th>
-                                        {{-- JUDUL --}}
-                                        <td>{{ $peminjaman->buku->judul }}</td>
-                                        {{-- STATUS --}}
-                                        <td>{{ $status }}</td>
-                                        {{-- DENDA --}}
-                                        <td>{{ $denda }}</td>
+                                        // DIPINJAM
+                                        if ($denda <= 0) { $status='Dipinjam' ; $denda=0; $total_denda=0; } } else {
+                                            $status='Dikembalikan' ; $denda=0; $total_denda=0;} @endphp {{-- TABEL --}}
+                                            <th scope="row">{{ $loop->index+1 }}
+                                            </th>
+                                            {{-- JUDUL --}}
+                                            <td>{{ $peminjaman->buku->judul }}</td>
+                                            {{-- Peminjaman --}}
+                                            <td>{{ $peminjaman->tgl_pinjam }}</td>
+                                            @if ($status == 'Dikembalikan')
+                                            <td>{{ $peminjaman->tgl_kembali }}</td>
+                                            @else
+                                            <td>{{ $status }}</td>
+                                            @endif
+                                            {{-- DENDA --}}
+                                            <td>{{ $denda }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -127,7 +127,23 @@
                             <input class="form-control" id="total_denda" rows="3" name="total_denda"
                                 value="{{ $total_denda}}" readonly>
                         </div>
-                        <a class="btn btn-primary mt-2 " type="button" href="{{ route('admin.mahasiswas.index') }}">
+                        @if ($mahasiswa->peminjamans->where('tgl_kembali', '=', null)->first() != null)
+                        <!-- Ada pengembalian -->
+                        <div class="form-group text-center">
+                            <a class="btn btn-danger mt-2 btn-lg" type="button"
+                                href="{{ route('admin.peminjamans.update', $mahasiswa->peminjamans->where('tgl_kembali', '=', null)->first()->id)}}">
+                                Konfirmasi Pengembalian Buku
+                            </a>
+                        </div>
+                        @else
+                        <!-- Tidak Ada pengembalian -->
+                        <div class="form-group text-center">
+                            <a class="btn btn-success mt-2 btn-lg" type="button" href="">
+                                Tidak Ada Pengembalian
+                            </a>
+                        </div>
+                        @endif
+                        <a class=" btn btn-primary mt-2 " type=" button" href="{{ route('admin.mahasiswas.index') }}">
                             Kembali
                         </a>
                     </form>

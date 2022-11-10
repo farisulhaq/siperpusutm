@@ -65,7 +65,7 @@
                                     <td>{{ $mahasiswa->nama }}</td>
                                     <td>{{ $mahasiswa->nim }}</td>
                                     <td>{{ $mahasiswa->program_studi->nama_prod }}</td>
-                                    @if (($mahasiswa->peminjamans->first()))
+                                    @if ($mahasiswa->peminjamans->where('tgl_kembali', '=', null)->first() != null)
                                     <td>Sedang Meminjam</td>
                                     @else
                                     <td>Belum Meminjam</td>

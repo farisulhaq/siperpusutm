@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +30,10 @@ Route::post('/admin/login', [LoginController::class, 'adminLogin'])->name('admin
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Disable Default Auth from Laravel UI Auth
 Route::get('/register', [LoginController::class, 'disableDefaultAuth']);
+// Register mahasiswa
+Route::get('/mahasiswa/register', [RegisterController::class, 'viewMahasiswaRegister'])->name('viewMahasiswaRegister');
+Route::post('/mahasiswa/register', [RegisterController::class, 'mahasiswaRegister'])->name('mahasiswaRegister');
+
 
 
 // HALAMAN Siperpus UTM ADMIN
@@ -48,6 +54,7 @@ Route::group(
                 // Destroy ubah ke delete di formnya juga
                 Route::get('/destroy/{mahasiswa:nim}', [MahasiswaController::class, 'destroy'])->name('destroy');
                 Route::get('/{mahasiswa:nim}', [MahasiswaController::class, 'show'])->name('show');
+                Route::patch('/updatePassword', [MahasiswaController::class, 'updatePassword'])->name('updatePassword');
             }
         );
         // Admin - Buku
@@ -63,6 +70,15 @@ Route::group(
                 Route::get('/{buku:slug}', [BukuController::class, 'show'])->name('show');
             }
         );
+
+        // Admin - Buku
+        Route::group(
+            ['prefix' => 'peminjamans', 'as' => 'peminjamans.'],
+            function () {
+                Route::get('/update/{peminjaman:id}', [PeminjamanController::class, 'update'])->name('update');
+            }
+        );
+
         // Admin - Matakuliah
         Route::group(
             ['prefix' => 'matakuliahs', 'as' => 'matakuliahs.'],
@@ -152,16 +168,7 @@ Route::group(
     function () {
         Route::get('/', [MahasiswaController::class, 'index'])->name('index');
         Route::get('#profile', [MahasiswaController::class, 'index'])->name('profile');
-        Route::get('/', [MahasiswaController::class, 'index'])->name('index');
         Route::patch('/updatePassword', [MahasiswaController::class, 'updatePassword'])->name('updatePassword');
-
-        // Mahasiswa - KRS
-        Route::group(
-            ['prefix' => 'krses', 'as' => 'krses.'],
-            function () {
-                Route::post('/store', [KrsController::class, 'store'])->name('store');
-                Route::get('/destroy/{krs:id}', [KrsController::class, 'destroy'])->name('destroy');
-            }
-        );
+        Route::get('/bukus/{buku:slug}', [BukuController::class, 'showForMahasiswa'])->name('showForMahasiswa');
     }
 );

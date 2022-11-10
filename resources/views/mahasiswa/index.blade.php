@@ -24,37 +24,153 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Silahkan Atur KRS dan KHS
+        <p class="masthead-subheading font-weight-light mb-0">Selamat Datang di Si Perpus UTM
         </p>
     </div>
 </header>
-<!-- FLASH MESSAGE -->
-@if(session()->has('success'))
-<div class="text-success  mt-4">
-    <h3 class="page-section-heading text-center text-uppercase text-success mb-0">
-        {{ session()->get('success') }}
-    </h3>
 
-</div>
-@endif
-
-@if(session()->has('error'))
-<div class="text-danger mt-4">
-    <h3 class="page-section-heading text-center text-uppercase text-danger mb-0">
-        {{ session()->get('error') }}
-    </h3>
-</div>
-@endif
 <!-- KRS Section-->
 <section class="page-section" id="krs">
     <div class="container">
         <!-- Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">KRS</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Daftar Buku</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-between">
+            <div class="col-md-3">
+                <div class="card mb-3 card-putih kecil">
+                    <div class="row g-0 ">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class=" ms-2 card-img img-fluid"
+                                src="https://i.pinimg.com/originals/37/23/90/372390f6f78977440d810380c9b08eaf.jpg"
+                                alt="gambar" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ms-2">
+                                <p class="fw-bold">
+                                    OKe
+                                </p>
+                                <p class="small-text">
+                                    Oke
+                                </p>
+                                <!-- Button edit hapus -->
+                                <div class="d-flex justify-content-end">
+                                    <!-- edit -->
+                                    <a class="bulet-biru m-1" href="edit.php?id="><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 card-putih kecil">
+                    <div class="row g-0 ">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class=" ms-2 card-img img-fluid"
+                                src="https://i.pinimg.com/originals/37/23/90/372390f6f78977440d810380c9b08eaf.jpg"
+                                alt="gambar" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ms-2">
+                                <p class="fw-bold">
+                                    OKe
+                                </p>
+                                <p class="small-text">
+                                    Oke
+                                </p>
+                                <!-- Button edit hapus -->
+                                <div class="d-flex justify-content-end">
+                                    <!-- edit -->
+                                    <a class="bulet-biru m-1" href="edit.php?id="><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 card-putih kecil">
+                    <div class="row g-0 ">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class=" ms-2 card-img img-fluid"
+                                src="https://i.pinimg.com/originals/37/23/90/372390f6f78977440d810380c9b08eaf.jpg"
+                                alt="gambar" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ms-2">
+                                <p class="fw-bold">
+                                    OKe
+                                </p>
+                                <p class="small-text">
+                                    Oke
+                                </p>
+                                <!-- Button edit hapus -->
+                                <div class="d-flex justify-content-end">
+                                    <!-- edit -->
+                                    <a class="bulet-biru m-1" href="edit.php?id="><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 card-putih kecil">
+                    <div class="row g-0 ">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class=" ms-2 card-img img-fluid"
+                                src="https://i.pinimg.com/originals/37/23/90/372390f6f78977440d810380c9b08eaf.jpg"
+                                alt="gambar" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ms-2">
+                                <p class="fw-bold">
+                                    OKe
+                                </p>
+                                <p class="small-text">
+                                    Oke
+                                </p>
+                                <!-- Button edit hapus -->
+                                <div class="d-flex justify-content-end">
+                                    <!-- edit -->
+                                    <a class="bulet-biru m-1" href="edit.php?id="><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 card-putih kecil">
+                    <div class="row g-0 ">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class=" ms-2 card-img img-fluid"
+                                src="https://i.pinimg.com/originals/37/23/90/372390f6f78977440d810380c9b08eaf.jpg"
+                                alt="gambar" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ms-2">
+                                <p class="fw-bold">
+                                    OKe
+                                </p>
+                                <p class="small-text">
+                                    Oke
+                                </p>
+                                <!-- Button edit hapus -->
+                                <div class="d-flex justify-content-end">
+                                    <!-- edit -->
+                                    <a class="bulet-biru m-1" href="edit.php?id="><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Grid Items-->
         <div class="row justify-content-center">
@@ -62,50 +178,33 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Kode</th>
-                            <th scope="col">Matakuliah</th>
-                            <th scope="col">SKS</th>
-                            <th scope="col">Action</th>
+                            <th>No</th>
+                            <th>Judul</th>
+                            <th>Pengarang</th>
+                            <th>Penerbit</th>
+                            <th>Tahun Terbit</th>
+                            <th>Jumlah di Rak</th>
+                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($mahasiswa->krses as $krs)
+                        @foreach ($bukus as $buku)
                         <tr>
                             <th scope="row">{{ $loop->index+1 }}</th>
-                            <td>{{ $krs->kode_matkul }}</td>
-                            <td>{{ $krs->matakuliah->nama }}</td>
-                            <td>{{ $krs->matakuliah->sks}}</td>
-                            <td>
-                                <a href="{{ route('mahasiswa.krses.destroy', $krs->id) }}">Delete</a>
-                            <td>
-
-
+                            <td>{{ $buku->judul }}</td>
+                            <td>{{ $buku->pengarang }}</td>
+                            <td>{{ $buku->penerbit }}</td>
+                            <td>{{ $buku->tahun_terbit }}</td>
+                            <td>{{ $buku->jumlah_buku }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('mahasiswa.showForMahasiswa', $buku->slug) }}">
+                                    <i class="far fa-eye text-primary"></i>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <form action="{{ route('mahasiswa.krses.store') }}" method="post" class="mt-3">
-                    @csrf
-                    @method('post')
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="kode_matkul" class="col-form-label fw-bold">Tambah Matkul</label>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-control" name="kode_matkul" id="kode_matkul">
-                                @foreach ($matakuliahs as $matakuliah)
-                                <option value="{{ $matakuliah->kode }}">
-                                    {{ $matakuliah->nama }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -114,7 +213,7 @@
 <section class="page-section bg-primary text-white mb-0" id="khs">
     <div class="container">
         <!-- About Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-white">KHS</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-white">Riwayat Peminjaman</h2>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -128,22 +227,14 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Kode</th>
-                            <th scope="col">Matakuliah</th>
-                            <th scope="col">SKS</th>
-                            <th scope="col">Nilai Akhir</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($mahasiswa->khses as $khs)
                         <tr>
-                            <th scope="row">{{ $loop->index+1 }}</th>
-                            <td>{{ $khs->kode_matkul }}</td>
-                            <td>{{ $khs->matakuliah->nama }}</td>
-                            <td>{{ $khs->matakuliah->sks}}</td>
-                            <td>{{ ($khs->nilai_tugas + $khs->nilai_uts + $khs->nilai_uas) / 3}}</td>
+                            {{-- <th scope="row">{{ $loop->index+1 }}</th> --}}
+                            <th>oke</th>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -175,11 +266,19 @@
                 </div>
                 <div class="d-flex flex-row bd-highlight mb-3 ">
                     <div class="p-2 bd-highlight fw-bold h2 ">Prodi:</div>
+                    @if (isset($mahasiswa->program_studi->nama_prod) == null)
+                    <div class="p-2 bd-highlight h2 text-danger">Belum di konfigurasi</div>
+                    @else
                     <div class="p-2 bd-highlight h2 text-primary">{{ $mahasiswa->program_studi->nama_prod }}</div>
+                    @endif
                 </div>
                 <div class="d-flex flex-row bd-highlight mb-3 ">
                     <div class="p-2 bd-highlight fw-bold h2 ">Alamat:</div>
+                    @if (isset($mahasiswa->alamat) == null)
+                    <div class="p-2 bd-highlight h2 text-danger">Belum dikonfigurasi</div>
+                    @else
                     <div class="p-2 bd-highlight h2 text-primary">{{ $mahasiswa->alamat }}</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -187,6 +286,22 @@
         <!-- Pass Section -->
         <div class="row justify-content-center">
             <div class="col-md-4 text-center">
+                <!-- FLASH MESSAGE -->
+                @if(session()->has('success'))
+                <div class="text-success  mt-4">
+                    <h6 class="page-section-heading text-center text-uppercase text-success mb-0">
+                        {{ session()->get('success') }}
+                    </h6>
+                </div>
+                @endif
+
+                @if(session()->has('error'))
+                <div class="text-danger mt-4">
+                    <h6 class="page-section-heading text-center text-uppercase text-danger mb-0">
+                        {{ session()->get('error') }}
+                    </h6>
+                </div>
+                @endif
                 <form action="{{ route('mahasiswa.updatePassword') }}" method="post">
                     @csrf
                     @method('patch')
@@ -220,6 +335,6 @@
 
 <!-- Copyright Section-->
 <div class="copyright py-4 text-center text-white">
-    <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+    <div class="container"><small>Copyright &copy; Si Perpus UTM 2022</small></div>
 </div>
 @endsection

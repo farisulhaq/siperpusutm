@@ -72,6 +72,11 @@ class BukuController extends Controller
         return view('auth.admin.buku.show', compact('buku'));
     }
 
+    public function showForMahasiswa(Buku $buku)
+    {
+        return view('mahasiswa.buku.show', compact('buku'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMahasiswaRequest;
+use App\Models\Mahasiswa;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -39,6 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:mahasiswa');
     }
 
     /**
@@ -69,5 +72,26 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function mahasiswaRegister(StoreMahasiswaRequest $request)
+    {
+        Mahasiswa::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'nim' => $request->nim,
+            'password' => Hash::make($request->password),
+        ]);
+        session()->flash('success', 'Akun telah ditambahkan, Silahkan Login');
+        return redirect()->route('viewMahasiswaLogin');
+    }
+
+    public function viewMahasiswaRegister()
+    {
+        return view('auth.register');
     }
 }
